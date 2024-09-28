@@ -94,7 +94,19 @@
         <div class="container">
 
             <div class="checkbox-container">
-                <div class="language-selector" id="google_translate_element"><h2 style="color: rgb(1, 1, 180);">Change Language</h2></div>
+                <h3 style="color: rgb(1, 1, 180);">Change Language:</h2>
+                <div class="language-selector" id="google_translate_element"></div>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="normalCheckbox" onclick="handleCheckbox('normal')">
+                    <span class="checkbox-custom"></span>
+                    Normal
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="smallCheckbox" onclick="handleCheckbox('small')">
+                    <span class="checkbox-custom"></span>
+                    Small
+                </label>
             </div>
 
 
@@ -112,7 +124,7 @@
 
                     <div class="input-group">
                         <div class="lab-div">
-                            <label for="">Profile</label>
+                            <label for="">Profile (Work name) ex:Doctor  </label>
                         </div>
                         <div class="input-div"><input type="text" id="profileIp"></div>
                     </div>
@@ -140,13 +152,13 @@
                 <div class="r-group">
                     <div class="input-group">
                         <div class="lab-div">
-                            <label for="">Location</label>
+                            <label for="">Location (living country-city )</label>
                         </div>
                         <div class="input-div"><input type="text" id="LocationIp"></div>
                     </div>
                     <div class="input-group">
                         <div class="lab-div">
-                            <label for="">Email</label>
+                            <label for="">Email (Adress mail)</label>
                         </div>
                         <div class="input-div"><input type="text" id="EmailIp"></div>
                     </div>
@@ -155,13 +167,14 @@
                 <div class="c-group">
                     <div class="input-group">
                         <div class="lab-div">
-                            <label for="">Telephone</label>
+                            <label for="">Telephone ex: +229 00 00 00 ..</label>
                         </div>
                         <div class="input-div"><input type="text" id="TelephoneIp"></div>
                     </div>
                 </div>
                 <button id="linkedin" class="add-button"><i class='bx bx-message-square-add'></i>LinkedIn</button>
                 <button id="github" class="add-button"><i class='bx bx-message-square-add'></i>GitHub</button>
+                <button id="blog" class="add-button"><i class='bx bx-message-square-add'></i>Blog</button>
 
                 <button id="instagram" class="add-button"><i class='bx bx-message-square-add'></i>Instagram</button>
                 <button id="facebook" class="add-button"><i class='bx bx-message-square-add'></i>Facebook</button>
@@ -181,7 +194,7 @@
                 <div class="c-group group" id="profileGroup" style="display: none;">
                     <div class="input-group">
                         <div class="lab-div">
-                            <label for="">Profile</label>
+                            <label for="">Profile (profile description) ex: i'm a doctor, diplomate from ... </label>
                         </div>
                         <div class="input-div">
                             <textarea name="" id="descriptionIp"></textarea>
@@ -214,18 +227,17 @@
                 </div>
                 <div class="c-group" id="skillsGroup" style="display: none;">
                     <div class="input-group">
-                        <div class="lab-div"> <label for="">Skill : </label> </div>
+                        <div class="lab-div"> <label for="">Skill : Enter en skill title, then the number of skills</label> </div>
                         <div class="input-div"> <input type="text" id="skillName"> </div>
 
                     </div>
                     <div class="input-group">
-                        <div class="lab-div"> <label for="">Number of skill </label> </div>
+                        <div class="lab-div"> <label for="">Number : Enter the of skills correponand to the title. </label> </div>
                         <div class="input-div"> <input type="number" id="skillNumber"> </div>
                         <button id="addSkills">Add</button>
                     </div>
                 </div>
             </div>
-
 
 
             <div class="add-section viewSection" style="width: 100%;">
@@ -260,7 +272,7 @@
             <div class="add-section viewSection" style="width: 100%;">
                 <div class="r-group">
                     <button style="width: 100%;" id="referencesBtn">
-                        <h3>References</h3>
+                        <h3>References poeple</h3>
                     </button>
                     <button id="referencesGroupBtn" style="width: 10%; height: 100%;"><i
                             class='bx bx-plus'></i></button>

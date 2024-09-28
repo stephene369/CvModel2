@@ -1,41 +1,41 @@
-document.body.style.zoom = "90%";
+document.body.style.zoom = "100%";
 
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.addEventListener("keydown", function (e) {
-    // Empêcher Ctrl+S ou Cmd+S
-    if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-        e.preventDefault();
-    }
+// document.addEventListener('contextmenu', event => event.preventDefault());
+// document.addEventListener("keydown", function (e) {
+//     // Empêcher Ctrl+S ou Cmd+S
+//     if (e.key === 's' && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+//         e.preventDefault();
+//     }
 
-    // Empêcher F12
-    if (e.key === 'F12' || e.keyCode === 123) {
-        e.preventDefault();
-    }
+//     // Empêcher F12
+//     if (e.key === 'F12' || e.keyCode === 123) {
+//         e.preventDefault();
+//     }
 
-    // Empêcher Ctrl+Shift+I ou Cmd+Option+I (autre raccourci pour les outils de développement)
-    if ((e.ctrlKey && e.shiftKey && e.key === 'I') || (e.metaKey && e.altKey && e.key === 'i')) {
-        e.preventDefault();
-    }
+//     // Empêcher Ctrl+Shift+I ou Cmd+Option+I (autre raccourci pour les outils de développement)
+//     if ((e.ctrlKey && e.shiftKey && e.key === 'I') || (e.metaKey && e.altKey && e.key === 'i')) {
+//         e.preventDefault();
+//     }
 
-    // Empêcher Ctrl+U ou Cmd+U (afficher le code source)
-    if ((e.ctrlKey && e.key === 'u') || (e.metaKey && e.key === 'u')) {
-        e.preventDefault();
-    }
+//     // Empêcher Ctrl+U ou Cmd+U (afficher le code source)
+//     if ((e.ctrlKey && e.key === 'u') || (e.metaKey && e.key === 'u')) {
+//         e.preventDefault();
+//     }
 
-    // Empêcher Ctrl+P ou Cmd+P
-    if ((e.ctrlKey && e.key === 'p') || (e.metaKey && e.key === 'p')) {
-        e.preventDefault();
-    }
-}, false);
+//     // Empêcher Ctrl+P ou Cmd+P
+//     if ((e.ctrlKey && e.key === 'p') || (e.metaKey && e.key === 'p')) {
+//         e.preventDefault();
+//     }
+// }, false);
 
 
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-  }
+// function googleTranslateElementInit() {
+//     new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+//   }
 
-function goBack() {
-    window.history.back();
-}
+// function goBack() {
+//     window.history.back();
+// }
 
 
 function mirrorText(idInput, idOutput) {
@@ -112,18 +112,17 @@ function hideSection(buttonID, sectionID) {
 
     button.addEventListener('click', function () {
         if (IsVisibility[sectionID]) {
-            section.style.display = 'none';
-            //button.classList.remove('viewSection') ;
-            //button.classList.add('hideSection');
+            if (confirm("Are you sure you want to hide this section?")) {
+                section.style.display = 'none';
+                IsVisibility[sectionID] = false;
+            }
         } else {
             section.style.display = 'block';
-            //button.classList.remove('hideSection');
-            //button.classList.add('viewSection');
+            IsVisibility[sectionID] = true;
         }
-
-        IsVisibility[sectionID] = !IsVisibility[sectionID];
     });
 }
+
 
 // Exemples d'utilisation
 hideSection('educationBtn', 'educationSection');
@@ -165,6 +164,8 @@ function createLi(input, iconName) {
         mail: 'bx bxs-envelope',
         phone: 'bx bx-phone',
         tiktok: 'bx bxl-tiktok',
+        blog:'bx bxl-blogger'
+
 
     };
 
@@ -250,6 +251,8 @@ addElement('contactGroup', 'social__container', 'instagram');
 addElement('contactGroup', 'social__container', 'facebook');
 addElement('contactGroup', 'social__container', 'tiktok');
 addElement('contactGroup', 'social__container', 'github');
+addElement('contactGroup', 'social__container', 'blog');
+
 
 
 
@@ -309,9 +312,9 @@ function createInputDivEducation() {
     const lab2 = document.createElement('label');
     const lab3 = document.createElement('label');
 
-    lab1.textContent = 'Year'
-    lab2.textContent = 'Education'
-    lab3.textContent = 'School'
+    lab1.textContent = 'Year (From when to whent ) ex: 2000-2003'
+    lab2.textContent = 'Education (Degree title, field name)'
+    lab3.textContent = 'School (school name)'
 
     const input1 = document.createElement('input');
     const input2 = document.createElement('input');
@@ -400,8 +403,9 @@ function addEducationElement(parent1Id, parent2Id, buttonId) {
         parent2.appendChild(newInputDiv_);
         parent1.classList.add('group')
         hider.style.display = 'block'
-        // Cacher le bouton d'ajout
-
+        if (hider.className === 'bx bx-chevron-down') {
+            hider.click()
+        }
     });
 }
 addEducationElement("educationGroup", "education-container", "educationGroupBtn")
@@ -481,7 +485,10 @@ function addSkillsElement(parent1Id, parent2Id, buttonId) {
         parent2.appendChild(newInputDiv_);
         parent1.classList.add('group')
         hider.style.display = 'block'
-        // Cacher le bouton d'ajout
+        if (hider.className === 'bx bx-chevron-down') {
+            hider.click()
+        }
+
     });
 }
 
@@ -497,19 +504,19 @@ addSkillsElement("skillsGroup", "skills-container", "addSkills");
 function createInputDivExperiences() {
     const group = InputGroup();
 
-    const titleLab = InputLab("Experience :");
+    const titleLab = InputLab("Profile (Enter your profile in the firm) ex: Developer");
     const titleInput = InputDiv();
     const title = document.createElement("input")
     titleInput.appendChild(title)
 
 
-    const firmLab = InputLab("Firm :"); // Label pour l'entreprise
+    const firmLab = InputLab("Firm (name of the firm)"); // Label pour l'entreprise
     const firmInput = InputDiv(); // Div qui contiendra l'input
     const firm = document.createElement("input"); // Input pour l'entreprise
     firmInput.appendChild(firm); // Ajout de l'input dans le div
 
 
-    const descriptionLab = InputLab("Description :"); // Label pour la description
+    const descriptionLab = InputLab("Description (describe your work in the firm)"); // Label pour la description
     const descriptionInput = InputDiv(); // Div qui contiendra l'input
     const description = document.createElement("textarea"); // Input pour la description
     descriptionInput.appendChild(description); // Ajout de l'input dans le div
@@ -589,7 +596,11 @@ function addExperiencesElement(parent1Id, parent2Id, buttonId) {
         parent2.appendChild(newInputDiv_);
         parent1.classList.add('group')
         hider.style.display = 'block'
-        // Cacher le bouton d'ajout
+        if (hider.className === 'bx bx-chevron-down') {
+            hider.click()
+        }
+
+
     });
 }
 addExperiencesElement("experiencesGroup", "experiences-container", "experiencesGroupBtn")
@@ -599,12 +610,12 @@ addExperiencesElement("experiencesGroup", "experiences-container", "experiencesG
 function createInnputDivCertificates() {
     const Group = InputGroup();
 
-    const titleLab = InputLab("Certificate :");
+    const titleLab = InputLab("Certificate (Name of your certificate)");
     const titleInput = InputDiv();
     const title = document.createElement("input")
     titleInput.appendChild(title)
 
-    const descriptionLab = InputLab("Description : ");
+    const descriptionLab = InputLab("Description (short description of your certificate)");
     const descriptionInput = InputDiv();
     const description = document.createElement("textarea");
     descriptionInput.appendChild(description);
@@ -620,6 +631,7 @@ function createInnputDivCertificates() {
 
     DIV.className = 'input-group';
     i.className = 'bx bx-camera';
+    i.textContent = "Certificate-Badge"
 
     button1.appendChild(i)
     DIV.appendChild(button1)
@@ -704,7 +716,10 @@ function addCertificatesElement(parent1Id, parent2Id, buttonId) {
         parent2.appendChild(newInputDiv_);
         parent1.classList.add('group')
         hider.style.display = 'block'
-        // Cacher le bouton d'ajout
+        if (hider.className === 'bx bx-chevron-down') {
+            hider.click()
+        }
+
     });
 }
 addCertificatesElement('certificatesGroup', 'certificate-container', 'certificatesGroupBtn')
@@ -715,12 +730,12 @@ addCertificatesElement('certificatesGroup', 'certificate-container', 'certificat
 function createInnputDivReferences() {
     const Group = InputGroup();
 
-    const subLab = InputLab("Title :");
+    const subLab = InputLab("Title (reference job name)");
     const subInput = InputDiv();
     const sub = document.createElement("input")
     subInput.appendChild(sub)
 
-    const nameLab = InputLab("Reference :");
+    const nameLab = InputLab("Reference (reference full name)");
     const nameInput = InputDiv();
     const name = document.createElement("input")
     nameInput.appendChild(name)
@@ -983,3 +998,73 @@ addHoverMessage("interestsBtn");
 
 
 
+
+
+
+
+
+
+
+
+
+
+function handleCheckbox(size) {
+    const root = document.documentElement;
+    const normalCheckbox = document.getElementById('normalCheckbox');
+    const smallCheckbox = document.getElementById('smallCheckbox');
+
+    if (size === 'small') {
+        normalCheckbox.checked = false;
+        smallCheckbox.checked = true;
+        // Appliquer les styles pour 'small'
+        // ...
+    } else if (size === 'normal') {
+        normalCheckbox.checked = true;
+        smallCheckbox.checked = false;
+        // Appliquer les styles pour 'normal'
+        // ...
+    }
+
+
+    const originalValues = {
+        '--header-height': '3rem',
+        '--h1-font-size': '1.5rem',
+        '--h2-font-size': '1.25rem',
+        '--h3-font-size': '1.11rem',
+        '--bd-grid-gap': '1.5rem',
+
+    
+        '--normal-font-size': '0.938rem',
+        '--section--padding': '1rem',
+    
+        /*Font Weight*/
+        
+        /*Margin */
+        '--mb-1': '0.5rem',
+        '--mb-2': '1rem',
+        '--mb-3': '1.5rem'
+    };
+
+
+    if (size === 'small') {
+        for (let [variable, value] of Object.entries(originalValues)) {
+            const numericValue = parseFloat(value);
+            const unit = value.replace(numericValue, '');
+            let smallValue;
+            if (variable === '--section--padding') {
+                smallValue = (numericValue * 0.15).toFixed(4) + unit;
+            } else if (variable === '--mb-3') {
+                smallValue = (numericValue * 0.9).toFixed(4) + unit;
+            }else if(variable === "--normal-font-size"){
+                smallValue = (numericValue * 0.95).toFixed(4) + unit;
+            } else {
+                smallValue = (numericValue * 0.9).toFixed(4) + unit;
+            }
+            root.style.setProperty(variable, smallValue);
+        }
+    } else if (size === 'normal') {
+        for (let [variable, value] of Object.entries(originalValues)) {
+            root.style.setProperty(variable, value);
+        }
+    }
+}
